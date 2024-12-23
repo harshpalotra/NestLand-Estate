@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart ,signInSuccess,signInFaliure } from '../user/userSlice';
-
+import OAuth from '../components/OAuth';
 
 const Signin = () => {
 const [formData, setFormData] = useState({});
@@ -66,16 +66,18 @@ const {loading , error} = useSelector((state) => state.user);
       <button
         type="submit"
         disabled={loading}
-        className="bg-slate-700 text-white p-3 rounded-lg uppercase"
+        className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-90"
       >
         {loading ? 'Loading...' : 'Sign In'}
       </button>
+      <OAuth/>
     </form>
     <div className="flex gap-2 mt-5">
       <p> Don't have an account?</p>
       <Link to="/sign-up">
         <span className="text-blue-700">Sign Up</span>
       </Link>
+
     </div>
     {error && <p className="text-red-400 mt-4">{error}</p>}
   </div>
