@@ -32,14 +32,12 @@ const Signup = () => {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) {
-        throw new Error('Failed to connect to the server.');
-      }
+     
 
       const data = await res.json();
       if (data.success === false) {
         setLoading(false);
-        setError(data.message || 'Signup failed.');
+        setError(data.message || "signup failed");
         return;
       }
 

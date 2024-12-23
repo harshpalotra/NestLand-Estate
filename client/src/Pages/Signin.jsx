@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInStart ,signInSuccess,signInFaliure } from '../user/userSlice';
+
 
 const Signin = () => {
-  const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+const [formData, setFormData] = useState({});
+const {loading , error} = useSelector((state) => state.user);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
-    setError(null); // Reset error state on input change
+    
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
-    // Basic client-side validation
-    if ( !formData.email || !formData.password) {
-      setLoading(false);
-      setError('All fields are required!');
-      return;
-    }
 
    try {
-       const res = await fetch('/api/auth/signup',{
+      dispatch(signInStart());
+       const res = await fetch('/api/auth/signin',{
          method:'POST',
          headers:{
            'Content-Type' : 'application/json',
@@ -35,18 +30,15 @@ const Signin = () => {
        const data = await res.json();
        console.log(data);
        if(data.success === false){
-         setLoading(false);
-         setError(data.message);
+         dispatch(signInFaliure(data.message));
          return;
        }
-     setLoading(false);
-     setError(null);
-     navigate('/sign-in');
-  
+     dispatch(signInSuccess(data));
+     navigate('/');
+    
    
    } catch (error) {
-    setLoading(false);
-    setError(error.message)
+    dispatch(signInFaliure(error.message));
    }
   };
 
@@ -76,11 +68,11 @@ const Signin = () => {
         disabled={loading}
         className="bg-slate-700 text-white p-3 rounded-lg uppercase"
       >
-        {loading ? 'Loading...' : 'Sign Up'}
+        {loading ? 'Loading...' : 'Sign In'}
       </button>
     </form>
     <div className="flex gap-2 mt-5">
-      <p>Have an account?</p>
+      <p> Don't have an account?</p>
       <Link to="/sign-up">
         <span className="text-blue-700">Sign Up</span>
       </Link>

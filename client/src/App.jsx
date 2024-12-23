@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
     <BrowserRouter>
-   w <Header />
+    <Header />
    <Routes>
     <Route path='/' element={<Home />} />
     <Route path='/sign-in' element={<Signin />} />

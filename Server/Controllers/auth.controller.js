@@ -2,11 +2,20 @@ import User from "../Models/user.models.js"
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { errorHandler } from "../utils/error.js";
+
+
 dotenv.config();
 export const signup = async (req, res, next)=>{
   // destructuring username, email and password from body
   const {username , email , password} = req.body;
-
+  const result = await User.findOne({
+    $or: [
+      { email: email },
+      { username: username }
+    ]
+  });
+  if (result) return next(errorHandler(404, 'User all ready registered'));
   // Hashing password 
   const hashedPassword = bcryptjs.hashSync(password,10);
   console.log(username,email,password);
