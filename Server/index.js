@@ -3,18 +3,21 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './Routes/user.route.js';
 import authRouter from './Routes/auth.route.js';
+import cookieParser from "cookie-parser";
 dotenv.config();
+
 
 // Connect to MongoDB using the environment variable
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.log('Error connecting to MongoDB:', err.message);
-  });
+.then(() => {
+  console.log('Connected to MongoDB');
+})
+.catch((err) => {
+  console.log('Error connecting to MongoDB:', err.message);
+});
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 
 app.listen(3000, () => {
