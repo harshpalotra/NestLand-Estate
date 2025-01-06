@@ -165,6 +165,9 @@ const CreateListing = () => {
 }
 
 export default CreateListing
+
+
+
 // import { useState } from 'react';
 // import axios from 'axios';
 // import { useSelector } from 'react-redux';
@@ -496,3 +499,5 @@ export default CreateListing
 //     </main>
 //   );
 // }
+
+
