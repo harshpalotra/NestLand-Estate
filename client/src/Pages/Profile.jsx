@@ -5,6 +5,7 @@ import { updateUser } from "../../../Server/Controllers/user.controller";
 import { deleteUserFailure, deleteUserStart, deleteUserSuccess, updateUserFailure, updateUserStart, updateUserSuccess } from "../user/userSlice";
 import { signOutUserFailure, signOutUserStart, signOutUserSuccess } from "../user/userSlice";
 import { use } from "react";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
  
@@ -92,6 +93,10 @@ const Profile = () => {
         disabled={loading}
         className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
         >{loading ? 'Loading...' : 'Update'}</button>
+        <Link  className='bg-blue-500 text-white rounded-lg p-3
+        uppercase text-center hover:opacity-95' to={'/create-listing'}>
+        create Listing 
+        </Link>
       </form>
       <div className="flex justify-between mt-5">
         <span onClick={handleDeleteUser} className="text-red-600 cursor-pointer">
