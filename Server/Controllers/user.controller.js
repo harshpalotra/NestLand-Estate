@@ -1,6 +1,7 @@
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from 'bcryptjs';
 import User from '../Models/user.models.js';
+import Listing from "../Models/listing.models.js";
 
 export const test = (req,res)=>{
     res.json({
@@ -59,3 +60,18 @@ export const signOut = async (req,res,next) =>{
     }
 
 }
+
+export const getUserListing = async (req,res,next) =>{
+    if(req.user.id === req.params.id) {
+        try {
+          const listing = await Listing.find({ userRef: req.params.id});
+            res.status(200).json(listing);
+        }
+        catch (error) {
+            next(error);
+}
+}
+else {
+    return next(errorHandler(401,"You can only view your own account"));
+}
+};
