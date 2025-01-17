@@ -8,5 +8,6 @@ listingRouter.post('/create', verfityToken , createListing);
 listingRouter.delete('/delete/:id', verfityToken, deleteListing)
 listingRouter.post('/update/:id', verfityToken, updateListing)
 listingRouter.get('/get/:id',  getListing)
+listingRouter.get('/get', getListings)
 
 export default listingRouter;
