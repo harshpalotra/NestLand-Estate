@@ -49,17 +49,7 @@ export const deleteUser = async (req, res, next) => {
     }
 };
 
-export const signOut = async (req, res, next) => {
 
-    try {
-        res.clearCookie('access_token');
-        res.status(200).json("Signout successfully");
-
-    } catch (error) {
-        next(error);
-    }
-
-}
 
 export const getUserListing = async (req, res, next) => {
     if (req.user.id === req.params.id) {
@@ -77,3 +67,15 @@ export const getUserListing = async (req, res, next) => {
     }
 };
 
+export const getUser = async (req, res, next) => {  
+ try {
+       const user = await User.findById(req.params.id);
+       if(!user) return next(errorHandler(404, "User not found"));
+   
+       const { password: pass, ...rest} = user._doc; 
+       res.status(200).json(rest);
+
+ } catch (error) {
+    next(error);
+ }
+};
