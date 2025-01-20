@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { createListing, updateListing, deleteListing, getListing } from '../Controllers/listing.controller.js';
+import { createListing, updateListing, deleteListing, getListing, getListings } from '../Controllers/listing.controller.js';
 import { verfityToken } from '../utils/verify.User.js';
 
 const listingRouter = express.Router();
