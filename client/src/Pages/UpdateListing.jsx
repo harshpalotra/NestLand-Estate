@@ -101,7 +101,7 @@ useEffect(() => {
   // advance way of handling form data
   // const handleChange = (e) => {
   //   const {id, value, checked, type} = e.target;
-  //   if(id === 'sell' || id === 'rent'){
+  //   if(id === 'sale' || id === 'rent'){
   //     setFormData({...formData, type: id});
   //   } else if(id === 'parking' || id === 'furnished' || id === 'offer'){
   //     setFormData({...formData, [id]: checked});
@@ -113,7 +113,7 @@ useEffect(() => {
 
 
   const handleChange = (e) => {
-    if(e.target.id === 'sell' || e.target.id === 'rent'){
+    if(e.target.id === 'sale' || e.target.id === 'rent'){
       setFormData({...formData, type: e.target.id});
     }
     else if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer'){
@@ -165,9 +165,9 @@ useEffect(() => {
         
         <div className='flex gap-6 flex-wrap'>
         <div className='flex gap-2'>
-            <input type='checkbox' id='sell' className='w-5' 
-            onChange={handleChange} checked={formData.type === 'sell'} />
-            <span>Sell</span>
+            <input type='checkbox' id='sale' className='w-5' 
+            onChange={handleChange} checked={formData.type === 'sale'} />
+            <span>Sale</span>
         </div>
         <div className='flex gap-2'>
             <input type='checkbox' id='rent' className='w-5'
@@ -206,7 +206,7 @@ useEffect(() => {
                  <div className=''>
                  <p>Regular Price</p>                                                            
                  {formData.type === 'rent' && (
-                    <span className='text-xs'>($ / month)</span>
+                    <span className='text-xs'>(₹ / month)</span>
                   )}
                 </div>                                                          
             </div>
@@ -225,7 +225,7 @@ useEffect(() => {
                 <div className='flex flex-col items-center'>
                   <p>Discounted price</p>
                   {formData.type === 'rent' && (
-                    <span className='text-xs'>($ / month)</span>
+                    <span className='text-xs'>(₹ / month)</span>
                   )}
                 </div>
               </div>
