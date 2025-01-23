@@ -5,6 +5,7 @@ import userRouter from './Routes/user.route.js';
 import authRouter from './Routes/auth.route.js';
 import cookieParser from "cookie-parser";
 import listingRouter from './Routes/listing.router.js';
+import path from 'path';
 dotenv.config();
 
 
@@ -16,6 +17,8 @@ mongoose.connect(process.env.MONGODB_URI)
 .catch((err) => {
   console.log('Error connecting to MongoDB:', err.message);
 });
+
+const __dirname = path.resolve();
 
 const app = express();
 app.use(cookieParser());
@@ -30,6 +33,15 @@ app.listen(3000, () => {
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter)
 app.use('/api/listing',listingRouter)
+
+
+
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*' , (req,res) =>{
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
 
 // To manage error we making err middleware 
 app.use((err, req, res, next) =>{
