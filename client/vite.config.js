@@ -18,15 +18,19 @@ export default defineConfig({
       crypto: 'crypto-browserify',
       buffer: 'buffer',
       stream: 'stream-browserify',
+      util: 'util/',  // Add this line
     },
   },
+  
   optimizeDeps: {
+    include: ['util', 'buffer', 'crypto', 'stream', 'events'],  // Ensure key Node.js modules are included
     esbuildOptions: {
       define: {
-        global: 'globalThis', // Ensures "global" is defined in the browser.
+        global: 'globalThis',
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
+          process: true, // Enable process polyfill if needed
           buffer: true,
         }),
         NodeModulesPolyfillPlugin(),
