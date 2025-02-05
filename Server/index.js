@@ -7,7 +7,8 @@ import cookieParser from "cookie-parser";
 import listingRouter from './Routes/listing.router.js';
 import path from 'path';
 dotenv.config();
-
+import inherits from 'inherits';
+global.inherits = inherits;
 
 // Connect to MongoDB using the environment variable
 mongoose.connect(process.env.MONGODB_URI)
