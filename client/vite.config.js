@@ -7,8 +7,8 @@ import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfil
 export default defineConfig({
   server: {
     proxy: {
-      '/Server': {
-        target: 'http://localhost:3000',
+      '/api': {
+       target: 'https://nestland-estate.onrender.com/api',
         secure: false,
       },
     },
