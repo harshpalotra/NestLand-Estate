@@ -18,12 +18,11 @@ export default defineConfig({
       crypto: 'crypto-browserify',
       buffer: 'buffer',
       stream: 'stream-browserify',
-      util: 'util/',  // Add this line
     },
   },
   
   optimizeDeps: {
-    include: ['util', 'buffer', 'crypto', 'stream', 'events'],  // Ensure key Node.js modules are included
+    include: [ 'buffer', 'crypto', 'stream', 'events'],  // Ensure key Node.js modules are included
     esbuildOptions: {
       define: {
         global: 'globalThis',
