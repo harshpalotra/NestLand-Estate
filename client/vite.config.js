@@ -7,7 +7,7 @@ import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfil
 export default defineConfig({
   server: {
     proxy: {
-      '/api': {
+      '/Server': {
         target: 'http://localhost:3000',
         secure: false,
       },
